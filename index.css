@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #0052FF;
+  --color-brand-blue: #0052FF;
+  --color-brand-red: #FF0000;
+  --color-accent-blue: #0d3c68;
+  --color-background-dark: #000000;
+  --color-surface-dark: #0a1118;
+
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.04);
+  --shadow-3xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+  --shadow-4xl: 0 45px 80px -20px rgba(0, 0, 0, 0.4);
+  --shadow-vibrant: 0 20px 40px -10px rgba(0, 82, 255, 0.15);
+  --shadow-elevated-light: 0 20px 50px -12px rgba(0, 82, 255, 0.12), 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+  --shadow-dark-elevated: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+
+  /* Responsive Spacing Scale */
+  --spacing-section-sm: clamp(2rem, 5vh, 3rem);
+  --spacing-section-md: clamp(4rem, 8vh, 5rem);
+  --spacing-section-lg: clamp(5rem, 10vh, 7rem);
+
+  /* Fluid Typography */
+  --font-size-hero: clamp(2.5rem, 8vw, 6rem);
+  --font-size-display: clamp(2rem, 6vw, 4.5rem);
+  --font-size-h2: clamp(1.75rem, 4vw, 3.5rem);
+  --font-size-h3: clamp(1.5rem, 3vw, 2.5rem);
+  --font-size-body: clamp(1rem, 1.2vw, 1.25rem);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply antialiased text-slate-900 dark:text-white bg-white dark:bg-black leading-relaxed;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  p {
+    @apply mb-6;
+  }
+
+  /* Prevent horizontal overflow from animations or large elements */
+  #root {
+    @apply overflow-x-hidden w-full;
+  }
+
+  /* Standardized Container */
+  .container-fluid {
+    @apply w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12;
+  }
+
+  /* Responsive Section Spacing */
+  .section-padding {
+    @apply py-[var(--spacing-section-sm)] md:py-[var(--spacing-section-md)] lg:py-[var(--spacing-section-lg)];
+  }
+
+  /* Fluid Typography Classes */
+  .text-hero { font-size: var(--font-size-hero); @apply font-black leading-[1.1] tracking-wide; }
+  .text-display { font-size: var(--font-size-display); @apply font-black leading-tight tracking-tighter; }
+  .text-h2 { font-size: var(--font-size-h2); @apply font-black leading-tight tracking-tight; }
+  .text-h3 { font-size: var(--font-size-h3); @apply font-black leading-snug tracking-tight; }
+  
+  /* Image Aspect Ratio Preservation */
+  img {
+    @apply max-w-full h-auto object-cover;
+  }
+
+  /* Touch Target Optimization */
+  button, a {
+    @apply min-h-[44px] min-w-[44px] inline-flex items-center justify-center transition-all;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Layout Shift Prevention */
+  .aspect-video-player {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .aspect-card-portrait {
+    aspect-ratio: 4 / 5;
+  }
+}

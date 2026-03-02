@@ -1,0 +1,233 @@
+
+import React, { useState } from 'react';
+import { Page } from '../types';
+
+const SignUp: React.FC<{ onNavigate: (p: Page) => void }> = ({ onNavigate }) => {
+  const [accountType, setAccountType] = useState<'Member' | 'Entrepreneur'>('Member');
+  const [regMethod, setRegMethod] = useState<'email' | 'phone'>('email');
+  const [otpSent, setOtpSent] = useState(false);
+  const logoUrl = "https://lh3.googleusercontent.com/d/1y0CJPA67J0JpbxJADkaJdfr_0aIRB78_";
+
+
+
+  return (
+    <div className="bg-black min-h-screen flex flex-col font-sans selection:bg-brand-red/30">
+      {/* Minimal Auth Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-8 flex items-center justify-between pointer-events-none">
+        <div 
+          className="flex items-center gap-3 cursor-pointer group pointer-events-auto"
+          onClick={() => onNavigate(Page.Home)}
+        >
+          <img 
+            src={logoUrl} 
+            alt="Furute Logo" 
+            className="h-10 md:h-12 w-auto object-contain dark:brightness-125 transition-transform group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      </header>
+
+      <main className="flex-1 flex flex-col lg:flex-row">
+        {/* Left Side: Atmospheric Branding */}
+        <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-[#050505] items-center justify-center p-24">
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute top-[-10%] left-[-10%] w-[80%] h-[80%] bg-brand-blue/20 rounded-full blur-[120px] animate-pulse"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand-red/10 rounded-full blur-[100px]"></div>
+          </div>
+          
+          <div className="relative z-10 max-w-xl">
+            <span className="text-brand-blue font-black uppercase tracking-[0.4em] text-[10px] mb-8 block">New Application</span>
+            <h2 className="text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8">
+              Join the <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-red">Elite.</span>
+            </h2>
+            <p className="text-xl text-white/40 font-medium leading-relaxed mb-12">
+              Become part of Pune's most influential business network. Gain access to elite mentoring, strategic PR, and a high-performance community.
+            </p>
+            
+            <div className="space-y-6">
+              {[
+                { icon: 'verified', text: 'Exclusive Networking' },
+                { icon: 'rocket_launch', text: 'Exponential Growth Systems' },
+                { icon: 'psychology', text: 'Direct Mentorship' }
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <span className="material-symbols-outlined text-brand-blue">{item.icon}</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white/60">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Decorative Rail Text */}
+          <div className="absolute right-12 bottom-12 flex items-center gap-4">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 vertical-rl">JOIN THE FUTURE</span>
+            <div className="w-12 h-px bg-white/20"></div>
+          </div>
+        </div>
+
+        {/* Right Side: Sign Up Form */}
+        <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 lg:p-24 bg-black relative">
+          <div className="w-full max-w-md">
+            <div className="mb-12">
+              <img 
+                src={logoUrl} 
+                alt="Furute Logo" 
+                className="h-16 w-auto object-contain mb-8 dark:brightness-125"
+              />
+              <h1 className="text-4xl font-black text-white mb-4 tracking-tight">Create Account.</h1>
+              <p className="text-white/50 font-medium">Select your path and registration method.</p>
+            </div>
+
+            <div className="space-y-4 mb-12">
+              <div className="flex bg-white/5 p-1 rounded-2xl border border-white/5">
+                {(['Member', 'Entrepreneur'] as const).map(type => (
+                  <button
+                    key={type}
+                    onClick={() => setAccountType(type)}
+                    className={`flex-1 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${accountType === type ? 'bg-white text-black shadow-xl' : 'text-white/40 hover:text-white'}`}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex bg-white/5 p-1 rounded-2xl border border-white/5">
+                <button
+                  onClick={() => setRegMethod('email')}
+                  className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${regMethod === 'email' ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white'}`}
+                >
+                  Email
+                </button>
+                <button
+                  onClick={() => setRegMethod('phone')}
+                  className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${regMethod === 'phone' ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white'}`}
+                >
+                  Phone
+                </button>
+              </div>
+            </div>
+
+              <form className="space-y-8" onSubmit={e => e.preventDefault()}>
+              <div className="space-y-6">
+                <div className="group">
+                  <label className="block text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 group-focus-within:text-brand-blue transition-colors">
+                    Full Name
+                  </label>
+                  <input 
+                    className="w-full bg-white/5 border-b border-white/10 focus:border-brand-blue py-4 text-white outline-none transition-all placeholder:text-white/10 font-medium" 
+                    placeholder="John Doe" 
+                  />
+                </div>
+                
+                {regMethod === 'email' ? (
+                  <>
+                    <div className="group">
+                      <label className="block text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 group-focus-within:text-brand-blue transition-colors">
+                        Email Address
+                      </label>
+                      <input 
+                        className="w-full bg-white/5 border-b border-white/10 focus:border-brand-blue py-4 text-white outline-none transition-all placeholder:text-white/10 font-medium" 
+                        placeholder="name@company.com" 
+                         
+                      />
+                    </div>
+
+                    <div className="group">
+                      <label className="block text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 group-focus-within:text-brand-red transition-colors">
+                        Password
+                      </label>
+                      <input 
+                        type="password" 
+                        className="w-full bg-white/5 border-b border-white/10 focus:border-brand-red py-4 text-white outline-none transition-all placeholder:text-white/10 font-medium" 
+                        placeholder="••••••••" 
+                         
+                      />
+                      <div className="flex items-center gap-2 mt-4">
+                        <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-full bg-brand-red w-1/3"></div>
+                        </div>
+                        <span className="text-[8px] text-brand-red font-black uppercase tracking-widest">Strength: Weak</span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="group">
+                      <label className="block text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 group-focus-within:text-brand-blue transition-colors">
+                        Phone Number
+                      </label>
+                      <div className="flex gap-4">
+                        <div className="w-20 bg-white/5 border-b border-white/10 py-4 text-white/40 text-center font-medium">+91</div>
+                        <input 
+                          type="tel" 
+                          required
+                          className="flex-1 bg-white/5 border-b border-white/10 focus:border-brand-blue py-4 text-white outline-none transition-all placeholder:text-white/10 font-medium" 
+                          placeholder="98765 43210" 
+                           
+                        />
+                      </div>
+                    </div>
+
+                    {otpSent && (
+                      <div className="group animate-in fade-in slide-in-from-top-2">
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-white/40 mb-2 group-focus-within:text-brand-red transition-colors">
+                          Enter 6-Digit OTP
+                        </label>
+                        <input 
+                          type="text" 
+                          maxLength={6}
+                          required
+                          className="w-full bg-white/5 border-b border-white/10 focus:border-brand-red py-4 text-white outline-none transition-all placeholder:text-white/10 font-medium tracking-[1em] text-center" 
+                          placeholder="••••••" 
+                           
+                        />
+                      </div>
+                    )}
+
+                    {!otpSent && (
+                      <button 
+                        type="button"
+                        onClick={() => setOtpSent(true)}
+                        className="w-full h-14 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest text-white hover:bg-white/5 transition-all"
+                      >
+                        Send Verification Code
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full h-16 bg-gradient-to-r from-brand-blue to-[#0041CC] text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(0,82,255,0.3)] transition-all active:scale-[0.98] shadow-[0_15px_40px_rgba(0,82,255,0.2)] flex items-center justify-center gap-3 group border border-white/10"
+              >
+                {regMethod === 'phone' && !otpSent ? 'Verify Phone' : 'Apply for Access'}
+                <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </button>
+            </form>
+
+
+
+
+
+            
+            <div className="mt-12 pt-12 border-t border-white/5 text-center">
+              <p className="text-white/30 text-[10px] font-black uppercase tracking-widest mb-4">
+                Already have an account? 
+              </p>
+              <button 
+                onClick={() => onNavigate(Page.Login)}
+                className="w-full h-14 border border-white/10 text-white font-black uppercase tracking-widest text-[10px] rounded-2xl hover:bg-white/5 transition-all"
+              >
+                Log in here
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default SignUp;
