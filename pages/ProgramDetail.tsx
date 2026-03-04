@@ -75,7 +75,7 @@ const ProgramDetail: React.FC<ProgramDetailProps> = ({ programId, onNavigate }) 
           </div>
           <div className="relative">
             <div className="aspect-[4/5] rounded-3xl md:rounded-[4rem] overflow-hidden shadow-vibrant border-8 sm:border-[16px] border-white dark:border-white/5">
-               <img src={program.img} className="w-full h-full object-cover grayscale-[10%]" alt="Reset" />
+               <img src={program.img} className="w-full h-full object-cover grayscale-[10%]" alt="Reset" referrerPolicy="no-referrer" />
                <div className="absolute inset-0 bg-accent-blue/20 dark:bg-brand-red/5 mix-blend-multiply transition-opacity hover:opacity-0 duration-700"></div>
             </div>
           </div>

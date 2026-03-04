@@ -16,7 +16,7 @@ const Courses: React.FC<{ onNavigate: (p: Page, id?: string) => void }> = ({ onN
       badge: 'FLAGSHIP', 
       info: 'Leadership • 12 Weeks', 
       desc: 'Our premier leadership development program designed for Pune\'s high-potential business owners and professional leaders.', 
-      img: 'https://lh3.googleusercontent.com/d/1BTz8T2OY8ACiTERRHBA0rGx0ffWAwXCp' 
+      img: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' 
     },
     { 
       id: 'branding-strategy',
@@ -34,7 +34,7 @@ const Courses: React.FC<{ onNavigate: (p: Page, id?: string) => void }> = ({ onN
       badge: 'ENROLLING', 
       info: 'Strategic Sprint', 
       desc: 'A high-impact workshop designed to help you define, align, and execute on your most ambitious business goals.', 
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBGwYk1oQP6Y5JRLg4WVJ8QtxjZpcU5VBsXS49VILowR9JJjRElLt8nb9NSsVaR4sFkoNPB_jG47co7y0W7tmv6enktXI60Bx8HJS8Fy4S2Kq7bxiTwUePucvVo7SaBrbkjSobdpEdu0qDx66_cg7xSKkB3neP8Er0S-tdTf7qCCSRiB8tfn-HUsS6IVzLTd9mTcd-hMnNZMi3vGO6RIzVj-oNAW9H1l_TAER5J-PETC1dQYNBxYOPG6O1TAEuEB2gfBPIpXK6wDuA' 
+      img: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1170&auto=format&fit=crop' 
     },
     { 
       id: '7-day-reset',
@@ -43,7 +43,7 @@ const Courses: React.FC<{ onNavigate: (p: Page, id?: string) => void }> = ({ onN
       badge: 'INTENSIVE', 
       info: 'Strategic Audit', 
       desc: 'Our most sought-after strategic sprint for established founders looking for an immediate operational overhaul.', 
-      img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDacfqaoVFrGFFk3ovxuYiBRB9yHvVUm7-zka8xbWD4xet8DUr5zYXfHimWiMe9XQ10V5HE_pQORi9bqmqKmw5bvsyaGamQw-3QAMPCl4AM4bEG-8paUbIAs3-4bZ5ZHuc_DgXlu9IgRv9CZWtqxQ0QUogh6hg919xhduFUQtp2LbPlbVPspa3ZGZjwZq2GFGsUJ96a2dIyWIPkjT0sjD8fuRzC80YV8dEM6fVf0Ccf1BZhTmHfLjRNbuPjL67wTTD_xjBM8kyqDKU' 
+      img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1170&auto=format&fit=crop' 
     }
   ];
 
@@ -110,7 +110,7 @@ const Courses: React.FC<{ onNavigate: (p: Page, id?: string) => void }> = ({ onN
            {filteredPrograms.map(p => (
              <div key={p.id} onClick={() => onNavigate(Page.ProgramDetail, p.id)} className="bg-white/95 dark:bg-[#0a0a0a] border border-blue-100/50 dark:border-white/5 rounded-3xl md:rounded-[4rem] overflow-hidden group cursor-pointer hover:shadow-elevated-light dark:hover:shadow-dark-elevated hover:-translate-y-3 transition-all duration-700 backdrop-blur-md shadow-soft">
                 <div className="aspect-[16/11] overflow-hidden relative">
-                   <img src={p.img} className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" alt={`Promotional image for the ${p.title} program`} />
+                   <img src={p.img} className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" alt={`Promotional image for the ${p.title} program`} referrerPolicy="no-referrer" />
                    {p.badge && <span className="absolute top-6 right-6 sm:top-8 sm:right-8 bg-brand-blue dark:bg-brand-red text-white text-[10px] font-black px-5 py-2 rounded-full uppercase tracking-widest shadow-2xl z-10">{p.badge}</span>}
                 </div>
                 <div className="p-8 space-y-8">
