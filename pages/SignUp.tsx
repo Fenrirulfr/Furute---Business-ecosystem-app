@@ -12,6 +12,14 @@ const SignUp: React.FC<{ onNavigate: (p: Page) => void }> = ({ onNavigate }) => 
 
   return (
     <div className="bg-black min-h-screen flex flex-col font-sans selection:bg-brand-red/30">
+      {/* Close Button */}
+      <button 
+        onClick={() => onNavigate(Page.Home)}
+        className="fixed top-8 right-8 md:top-12 md:right-12 z-[60] size-12 md:size-14 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center hover:bg-white/10 transition-all group active:scale-95"
+      >
+        <span className="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">close</span>
+      </button>
+
       {/* Minimal Auth Header */}
       <header className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-8 flex items-center justify-between pointer-events-none">
         <div 
